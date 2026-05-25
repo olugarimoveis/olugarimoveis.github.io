@@ -1,404 +1,651 @@
-#### 
-
-
-
-
-
-#### <!DOCTYPE html>
-
-#### <html lang="pt-BR">
-
-#### <head>
-
-#### &#x20;   <meta charset="UTF-8">
-
-#### &#x20;   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-#### &#x20;   <title>Modelos de Laudos Periciais e Contratos AutoPreenchíveis</title>
-
-#### &#x20;   <style>
-
-#### &#x20;       :root {
-
-#### &#x20;           --primary: #0f172a;
-
-#### &#x20;           --secondary: #1e293b;
-
-#### &#x20;           --accent: #2563eb;
-
-#### &#x20;           --accent-hover: #1d4ed8;
-
-#### &#x20;           --text: #334155;
-
-#### &#x20;           --light: #f8fafc;
-
-#### &#x20;       }
-
-#### 
-
-#### &#x20;       \* {
-
-#### &#x20;           margin: 0;
-
-#### &#x20;           padding: 0;
-
-#### &#x20;           box-sizing: border-box;
-
-#### &#x20;           font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-
-#### &#x20;       }
-
-#### 
-
-#### &#x20;       body {
-
-#### &#x20;           background-color: var(--light);
-
-#### &#x20;           color: var(--text);
-
-#### &#x20;           line-height: 1.6;
-
-#### &#x20;       }
-
-#### 
-
-#### &#x20;       header {
-
-#### &#x20;           background-color: var(--primary);
-
-#### &#x20;           color: white;
-
-#### &#x20;           text-align: center;
-
-#### &#x20;           padding: 5rem 1rem;
-
-#### &#x20;       }
-
-#### 
-
-#### &#x20;       header h1 {
-
-#### &#x20;           font-size: 2.5rem;
-
-#### &#x20;           margin-bottom: 1rem;
-
-#### &#x20;           max-width: 800px;
-
-#### &#x20;           margin-left: auto;
-
-#### &#x20;           margin-right: auto;
-
-#### &#x20;       }
-
-#### 
-
-#### &#x20;       header p {
-
-#### &#x20;           font-size: 1.2rem;
-
-#### &#x20;           color: #cbd5e1;
-
-#### &#x20;           max-width: 600px;
-
-#### &#x20;           margin: 0 auto;
-
-#### &#x20;       }
-
-#### 
-
-#### &#x20;       .container {
-
-#### &#x20;           max-width: 1100px;
-
-#### &#x20;           margin: -3rem auto 4rem auto;
-
-#### &#x20;           padding: 0 1rem;
-
-#### &#x20;       }
-
-#### 
-
-#### &#x20;       .grid {
-
-#### &#x20;           display: grid;
-
-#### &#x20;           grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-
-#### &#x20;           gap: 2rem;
-
-#### &#x20;       }
-
-#### 
-
-#### &#x20;       .card {
-
-#### &#x20;           background: white;
-
-#### &#x20;           border-radius: 12px;
-
-#### &#x20;           padding: 2rem;
-
-#### &#x20;           box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
-
-#### &#x20;           display: flex;
-
-#### &#x20;           flex-direction: column;
-
-#### &#x20;           justify-content: space-between;
-
-#### &#x20;           border: 1px solid #e2e8f0;
-
-#### &#x20;           transition: transform 0.2s;
-
-#### &#x20;       }
-
-#### 
-
-#### &#x20;       .card:hover {
-
-#### &#x20;           transform: translateY(-5px);
-
-#### &#x20;       }
-
-#### 
-
-#### &#x20;       .card h3 {
-
-#### &#x20;           color: var(--primary);
-
-#### &#x20;           font-size: 1.4rem;
-
-#### &#x20;           margin-bottom: 1rem;
-
-#### &#x20;       }
-
-#### 
-
-#### &#x20;       .card p {
-
-#### &#x20;           font-size: 0.95rem;
-
-#### &#x20;           margin-bottom: 1.5rem;
-
-#### &#x20;           flex-grow: 1;
-
-#### &#x20;       }
-
-#### 
-
-#### &#x20;       .badge {
-
-#### &#x20;           display: inline-block;
-
-#### &#x20;           background-color: #dbeafe;
-
-#### &#x20;           color: var(--accent);
-
-#### &#x20;           padding: 0.25rem 0.7rem;
-
-#### &#x20;           border-radius: 50px;
-
-#### &#x20;           font-size: 0.8rem;
-
-#### &#x20;           font-weight: bold;
-
-#### &#x20;           margin-bottom: 1rem;
-
-#### &#x20;       }
-
-#### 
-
-#### &#x20;       .price {
-
-#### &#x20;           font-size: 1.8rem;
-
-#### &#x20;           font-weight: bold;
-
-#### &#x20;           color: var(--primary);
-
-#### &#x20;           margin-bottom: 1.5rem;
-
-#### &#x20;       }
-
-#### 
-
-#### &#x20;       .price span {
-
-#### &#x20;           font-size: 0.9rem;
-
-#### &#x20;           color: #64748b;
-
-#### &#x20;           font-weight: normal;
-
-#### &#x20;       }
-
-#### 
-
-#### &#x20;       .btn {
-
-#### &#x20;           display: block;
-
-#### &#x20;           text-align: center;
-
-#### &#x20;           background-color: var(--accent);
-
-#### &#x20;           color: white;
-
-#### &#x20;           text-decoration: none;
-
-#### &#x20;           padding: 0.8rem;
-
-#### &#x20;           border-radius: 8px;
-
-#### &#x20;           font-weight: bold;
-
-#### &#x20;           transition: background 0.2s;
-
-#### &#x20;       }
-
-#### 
-
-#### &#x20;       .btn:hover {
-
-#### &#x20;           background-color: var(--accent-hover);
-
-#### &#x20;       }
-
-#### 
-
-#### &#x20;       footer {
-
-#### &#x20;           text-align: center;
-
-#### &#x20;           padding: 2rem;
-
-#### &#x20;           color: #64748b;
-
-#### &#x20;           font-size: 0.9rem;
-
-#### &#x20;           border-top: 1px solid #e2e8f0;
-
-#### &#x20;           background: white;
-
-#### &#x20;       }
-
-#### &#x20;   </style>
-
-#### </head>
-
-#### <body>
-
-#### 
-
-#### &#x20;   <header>
-
-#### &#x20;       <h1>Modelos AutoPreenchíveis de Laudos e Contratos</h1>
-
-#### &#x20;       <p>Ganhe tempo e precisão jurídica com documentos em Word e PDF totalmente estruturados para o mercado imobiliário e pericial.</p>
-
-#### &#x20;   </header>
-
-#### 
-
-#### &#x20;   <div class="container">
-
-#### &#x20;       <div class="grid">
-
-#### &#x20;           
-
-#### &#x20;           <!-- PRODUTO 1 -->
-
-#### &#x20;           <div class="card">
-
-#### &#x20;               <div>
-
-#### &#x20;                   <span class="badge">Perícia Judicial / Extrajudicial</span>
-
-#### &#x20;                   <h3>Laudos Periciais Imobiliários</h3>
-
-#### &#x20;                   <p>Modelos prontos e normatizados para esferas judiciais e extrajudiciais. Estrutura técnica ideal para peritos engenheiros, arquitetos ou corretores cadastrados em tribunais.</p>
-
-#### &#x20;               </div>
-
-#### &#x20;               <div>
-
-#### &#x20;                   <div class="price">R$ 97,00 <span>ou Pix</span></div>
-
-#### &#x20;                   <a href="\[LINK\_DA\_HOTMART\_PRODUTO\_1]" class="btn" target="\_blank">Baixar Agora</a>
-
-#### &#x20;               </div>
-
-#### &#x20;           </div>
-
-#### 
-
-#### &#x20;           <!-- PRODUTO 2 -->
-
-#### &#x20;           <div class="card">
-
-#### &#x20;               <div>
-
-#### &#x20;                   <span class="badge">Locação e Administração</span>
-
-#### &#x20;                   <h3>Laudo de Avaliação Imobiliária</h3>
-
-#### &#x20;                   <p>Desenvolvido especificamente para corretores de imóveis e imobiliárias utilizarem antes de fechar contratos de locação. Evite contestações e resguarde seus clientes.</p>
-
-#### &#x20;               </div>
-
-#### &#x20;               <div>
-
-#### &#x20;                   <div class="price">R$ 79,00 <span>ou Pix</span></div>
-
-#### &#x20;                   <a href="\[LINK\_DA\_HOTMART\_PRODUTO\_2]" class="btn" target="\_blank">Baixar Agora</a>
-
-#### &#x20;               </div>
-
-#### &#x20;           </div>
-
-#### 
-
-#### &#x20;           <!-- PRODUTO 3 -->
-
-#### &#x20;           <div class="card">
-
-#### &#x20;               <div>
-
-#### &#x20;                   <span class="badge">Modelos de Contratos</span>
-
-#### &#x20;                   <h3>Combo: Contratos de Ligação</h3>
-
-#### &#x20;                   <p>Contratos adaptados para várias modalidades do mercado de intermediação e assessoria jurídica imobiliária. Documentos editáveis no Word de forma simples.</p>
-
-#### &#x20;               </div>
-
-#### &#x20;               <div>
-
-#### &#x20;                   <div class="price">R$ 127,00 <span>ou Pix</span></div>
-
-#### &#x20;                   <a href="\[LINK\_DA\_HOTMART\_PRODUTO\_3]" class="btn" target="\_blank">Baixar Agora</a>
-
-#### &#x20;               </div>
-
-#### &#x20;           </div>
-
-#### 
-
-#### &#x20;       </div>
-
-#### &#x20;   </div>
-
-#### 
-
-#### &#x20;   <footer>
-
-#### &#x20;       <p>\&copy; 2026 Seus Modelos Imobiliários. Todos os direitos reservados. Processamento seguro via Hotmart.</p>
-
-#### &#x20;   </footer>
-
-#### 
-
-#### </body>
-
-#### </html>
-
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OLugar — Modelos Imobiliários Profissionais</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #f5f0e8;
+      --dark: #1a1612;
+      --gold: #b8956a;
+      --gold-light: #d4b08a;
+      --muted: #6b6259;
+      --white: #fefcf9;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--dark);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* ── NOISE TEXTURE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.4;
+    }
+
+    /* ── HEADER / NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.5rem 4rem;
+      background: rgba(245, 240, 232, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(184,149,106,0.2);
+    }
+
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 300;
+      letter-spacing: 0.15em;
+      color: var(--dark);
+      text-decoration: none;
+    }
+
+    .logo span { color: var(--gold); }
+
+    nav a.nav-cta {
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-decoration: none;
+      border-bottom: 1px solid var(--gold);
+      padding-bottom: 2px;
+      transition: opacity 0.2s;
+    }
+
+    nav a.nav-cta:hover { opacity: 0.6; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+      padding-top: 80px;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 6rem 4rem 6rem 4rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 40px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 5vw, 5rem);
+      font-weight: 300;
+      line-height: 1.1;
+      color: var(--dark);
+      margin-bottom: 2rem;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .hero-desc {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--muted);
+      max-width: 420px;
+      margin-bottom: 3rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .btn-primary {
+      background: var(--dark);
+      color: var(--cream);
+      padding: 1rem 2.5rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.3s, transform 0.2s;
+      display: inline-block;
+    }
+
+    .btn-primary:hover {
+      background: var(--gold);
+      transform: translateY(-2px);
+    }
+
+    .btn-ghost {
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: color 0.2s;
+    }
+
+    .btn-ghost:hover { color: var(--gold); }
+    .btn-ghost::after { content: '↓'; }
+
+    .hero-right {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-right::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(184,149,106,0.12) 0%, rgba(26,22,18,0.08) 100%);
+    }
+
+    .hero-bg-pattern {
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 59px,
+          rgba(184,149,106,0.08) 59px,
+          rgba(184,149,106,0.08) 60px
+        ),
+        repeating-linear-gradient(
+          90deg,
+          transparent,
+          transparent 59px,
+          rgba(184,149,106,0.08) 59px,
+          rgba(184,149,106,0.08) 60px
+        );
+    }
+
+    .hero-number {
+      position: absolute;
+      bottom: 4rem;
+      right: 4rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 14rem;
+      font-weight: 300;
+      color: rgba(184,149,106,0.12);
+      line-height: 1;
+      z-index: 1;
+      user-select: none;
+    }
+
+    .hero-badge {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+      width: 200px;
+      height: 200px;
+      border: 1px solid rgba(184,149,106,0.4);
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: rgba(245,240,232,0.9);
+      backdrop-filter: blur(8px);
+    }
+
+    .hero-badge .num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      font-weight: 300;
+      color: var(--gold);
+      line-height: 1;
+    }
+
+    .hero-badge .label {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 0.4rem;
+      max-width: 120px;
+      line-height: 1.4;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      padding: 3rem 4rem;
+      border-top: 1px solid rgba(184,149,106,0.2);
+    }
+
+    .divider-line { flex: 1; height: 1px; background: rgba(184,149,106,0.2); }
+
+    .divider-text {
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* ── PRODUTOS ── */
+    #produtos {
+      padding: 4rem 4rem 8rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 5rem;
+      align-items: end;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 4vw, 4rem);
+      font-weight: 300;
+      line-height: 1.1;
+    }
+
+    .section-title em { font-style: italic; color: var(--gold); }
+
+    .section-desc {
+      font-size: 0.9rem;
+      line-height: 1.8;
+      color: var(--muted);
+      max-width: 380px;
+    }
+
+    .produtos-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border: 1px solid rgba(184,149,106,0.25);
+    }
+
+    .produto-card {
+      padding: 3rem 2.5rem;
+      border-right: 1px solid rgba(184,149,106,0.25);
+      position: relative;
+      transition: background 0.3s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .produto-card:last-child { border-right: none; }
+
+    .produto-card:hover { background: rgba(184,149,106,0.05); }
+
+    .produto-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.85rem;
+      color: var(--gold);
+      letter-spacing: 0.2em;
+      margin-bottom: 2rem;
+    }
+
+    .produto-tag {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .produto-tag::before {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .produto-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.7rem;
+      font-weight: 400;
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+      color: var(--dark);
+    }
+
+    .produto-desc {
+      font-size: 0.85rem;
+      line-height: 1.8;
+      color: var(--muted);
+      flex-grow: 1;
+      margin-bottom: 2.5rem;
+    }
+
+    .produto-price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      font-weight: 300;
+      color: var(--dark);
+      margin-bottom: 0.3rem;
+    }
+
+    .produto-price-note {
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+    }
+
+    .btn-produto {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.9rem 1.2rem;
+      border: 1px solid var(--dark);
+      color: var(--dark);
+      text-decoration: none;
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      transition: all 0.3s;
+    }
+
+    .btn-produto:hover {
+      background: var(--dark);
+      color: var(--cream);
+    }
+
+    .btn-produto span { font-size: 1rem; }
+
+    /* ── GARANTIA ── */
+    .garantia {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 0;
+      margin: 0 4rem;
+      border: 1px solid rgba(184,149,106,0.25);
+      border-top: none;
+    }
+
+    .garantia-left {
+      background: var(--dark);
+      padding: 3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .garantia-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .garantia-left h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 300;
+      color: var(--cream);
+      line-height: 1.2;
+    }
+
+    .garantia-left h3 em { color: var(--gold); font-style: italic; }
+
+    .garantia-right {
+      padding: 3rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .garantia-item h4 {
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+
+    .garantia-item p {
+      font-size: 0.85rem;
+      line-height: 1.7;
+      color: var(--muted);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      margin-top: 6rem;
+      padding: 3rem 4rem;
+      border-top: 1px solid rgba(184,149,106,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    footer .logo { font-size: 1.3rem; }
+
+    footer p {
+      font-size: 0.75rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-left > * {
+      animation: fadeUp 0.8s ease forwards;
+      opacity: 0;
+    }
+
+    .hero-eyebrow { animation-delay: 0.1s; }
+    .hero h1 { animation-delay: 0.25s; }
+    .hero-desc { animation-delay: 0.4s; }
+    .hero-actions { animation-delay: 0.55s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1.2rem 2rem; }
+
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+
+      .hero-left { padding: 6rem 2rem 3rem; }
+      .hero-right { height: 300px; }
+
+      .divider { padding: 2rem; }
+
+      #produtos { padding: 3rem 2rem 6rem; }
+
+      .section-header { grid-template-columns: 1fr; }
+
+      .produtos-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .produto-card {
+        border-right: none;
+        border-bottom: 1px solid rgba(184,149,106,0.25);
+      }
+
+      .produto-card:last-child { border-bottom: none; }
+
+      .garantia {
+        grid-template-columns: 1fr;
+        margin: 0 2rem;
+      }
+
+      .garantia-right { grid-template-columns: 1fr; }
+
+      footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="#" class="logo">O<span>Lugar</span></a>
+    <a href="#produtos" class="nav-cta">Ver Modelos</a>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-left">
+      <div class="hero-eyebrow">Documentação Imobiliária Profissional</div>
+      <h1>Laudos e<br>Contratos<br><em>prontos para usar</em></h1>
+      <p class="hero-desc">Modelos normatizados em Word e PDF para peritos, corretores e imobiliárias. Precisão jurídica, estrutura técnica, entrega imediata.</p>
+      <div class="hero-actions">
+        <a href="#produtos" class="btn-primary">Ver os Modelos</a>
+        <a href="#garantia" class="btn-ghost">Saiba mais</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-bg-pattern"></div>
+      <div class="hero-number">3</div>
+      <div class="hero-badge">
+        <div class="num">100%</div>
+        <div class="label">Editável em Word & PDF</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider">
+    <div class="divider-line"></div>
+    <div class="divider-text">Modelos disponíveis</div>
+    <div class="divider-line"></div>
+  </div>
+
+  <section id="produtos">
+    <div class="section-header">
+      <h2 class="section-title">Escolha o<br>modelo <em>ideal</em><br>para você</h2>
+      <p class="section-desc">Cada modelo foi desenvolvido para uma necessidade específica do mercado imobiliário. Estrutura técnica pronta, campos editáveis, conformidade normativa.</p>
+    </div>
+
+    <div class="produtos-grid">
+
+      <div class="produto-card">
+        <div class="produto-num">01</div>
+        <div class="produto-tag">Perícia Judicial / Extrajudicial</div>
+        <h3 class="produto-title">Laudos Periciais Imobiliários</h3>
+        <p class="produto-desc">Modelos prontos e normatizados para esferas judiciais e extrajudiciais. Estrutura técnica ideal para peritos engenheiros, arquitetos ou corretores cadastrados em tribunais.</p>
+        <div class="produto-price">R$ 97</div>
+        <div class="produto-price-note">pagamento via Pix ou cartão</div>
+        <a href="[LINK_DA_HOTMART_PRODUTO_1]" class="btn-produto" target="_blank">
+          Baixar Agora <span>→</span>
+        </a>
+      </div>
+
+      <div class="produto-card">
+        <div class="produto-num">02</div>
+        <div class="produto-tag">Locação e Administração</div>
+        <h3 class="produto-title">Laudo de Avaliação Imobiliária</h3>
+        <p class="produto-desc">Desenvolvido especificamente para corretores de imóveis e imobiliárias utilizarem antes de fechar contratos de locação. Evite contestações e resguarde seus clientes.</p>
+        <div class="produto-price">R$ 79</div>
+        <div class="produto-price-note">pagamento via Pix ou cartão</div>
+        <a href="[LINK_DA_HOTMART_PRODUTO_2]" class="btn-produto" target="_blank">
+          Baixar Agora <span>→</span>
+        </a>
+      </div>
+
+      <div class="produto-card">
+        <div class="produto-num">03</div>
+        <div class="produto-tag">Modelos de Contratos</div>
+        <h3 class="produto-title">Combo: Contratos de Ligação</h3>
+        <p class="produto-desc">Contratos adaptados para várias modalidades do mercado de intermediação e assessoria jurídica imobiliária. Documentos editáveis no Word de forma simples.</p>
+        <div class="produto-price">R$ 127</div>
+        <div class="produto-price-note">pagamento via Pix ou cartão</div>
+        <a href="[LINK_DA_HOTMART_PRODUTO_3]" class="btn-produto" target="_blank">
+          Baixar Agora <span>→</span>
+        </a>
+      </div>
+
+    </div>
+
+    <div class="garantia" id="garantia">
+      <div class="garantia-left">
+        <div class="garantia-icon">✦</div>
+        <h3>Entrega<br><em>imediata</em><br>e segura</h3>
+      </div>
+      <div class="garantia-right">
+        <div class="garantia-item">
+          <h4>Formato</h4>
+          <p>Arquivos Word (.docx) e PDF totalmente editáveis, prontos para preenchimento imediato.</p>
+        </div>
+        <div class="garantia-item">
+          <h4>Normatização</h4>
+          <p>Estrutura técnica alinhada às exigências jurídicas e periciais do mercado imobiliário brasileiro.</p>
+        </div>
+        <div class="garantia-item">
+          <h4>Processamento</h4>
+          <p>Pagamento seguro via Hotmart. Acesso ao arquivo logo após a confirmação.</p>
+        </div>
+        <div class="garantia-item">
+          <h4>Suporte</h4>
+          <p>Dúvidas sobre o modelo? Entre em contato diretamente pelo canal da Hotmart.</p>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <footer>
+    <a href="#" class="logo">O<span>Lugar</span></a>
+    <p>© 2026 OLugar Modelos Imobiliários · Processamento seguro via Hotmart</p>
+  </footer>
+
+</body>
+</html>
